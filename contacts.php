@@ -37,20 +37,28 @@ function print_contacts($contacts){
     </article>
 
     <h3>Contact us</h3>
-    <form role="form">
+    <form action="check.php" method="post" role="form">
         <div class="form-group">
             <label for="firstName">First name</label>
-            <input type="text" class="form-control" id="firstName" placeholder="Enter your name">
+            <input type="text" name="firstName" class="form-control" id="firstName" placeholder="Enter your first name">
         </div>
         <div class="form-group">
-            <label for="lastName">First name</label>
-            <input type="text" class="form-control" id="lastName" placeholder="Enter your sirname">
+            <label for="lastName">Last name</label>
+            <input type="text" name="lastName" class="form-control" id="lastName" placeholder="Enter your last name">
         </div>
         <div class="form-group">
-            <label for="email">First name</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter your email-address">
+            <label for="email">Email</label>
+            <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email-address">
         </div>
-        <button type="submit" class="btn btn-success">Submit</button>
+        <div class="form-group">
+            <label for="message">Message</label>
+            <textarea class="form-control" name="message" id="message" rows="10" placeholder="Write your message here"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="file">Add file</label>
+            <input type="file" class="form-control" id="file"/>
+        </div>
+        <button type="submit" name="submit" class="btn btn-success">Submit</button>
     </form>
 </div>
 </body>
