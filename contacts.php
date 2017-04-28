@@ -37,7 +37,7 @@ function print_contacts($contacts){
     </article>
 
     <h3>Contact us</h3>
-    <form action="check.php" method="post" role="form">
+    <form name="form" action="check.php" method="request" role="form">
         <div class="form-group">
             <label for="firstName">First name</label>
             <input type="text" name="firstName" class="form-control" id="firstName" placeholder="Enter your first name">
@@ -58,7 +58,7 @@ function print_contacts($contacts){
             <label for="file">Add file</label>
             <input type="file" class="form-control" id="file"/>
         </div>
-        <button type="submit" name="submit" class="btn btn-success">Submit</button>
+        <button type="submit" class="btn btn-success">Submit</button>
     </form>
 </div>
 </body>
