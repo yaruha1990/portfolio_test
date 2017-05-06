@@ -2,13 +2,18 @@
 include 'headandmenu.php';
 $contacts = [
     "Name" => "Yaruha's company",
-    "Address" => "USA, California, San Francisco, Silicon Valley",
+    "Address" => "Nekrasova Street 115, Bila Tserkva, Kyivs'ka oblast",
     "Email" => "yaruha@ukr.net",
+    ""=>"Also, you can contact us from <a href=\"faq.php\">FAQ</a> page",
 ];
 
 function print_contacts($contacts){
     foreach ($contacts as $key => $value){
-        echo "<li class='list-group-item'><b>$key: </b><span>$value</span></li>";
+        if ($key==""){
+            echo "<li class='list-group-item'><b>$key</b><span>$value</span></li>";
+        } else{
+            echo "<li class='list-group-item'><b>$key: </b><span>$value</span></li>";
+        }
     }
 }
 ?>
@@ -35,31 +40,11 @@ function print_contacts($contacts){
             <?php print_contacts($contacts)?>
         </ul>
     </article>
-
-    <h3>Contact us</h3>
-    <form name="form" action="check.php" method="request" role="form">
-        <div class="form-group">
-            <label for="firstName">First name</label>
-            <input type="text" name="firstName" class="form-control" id="firstName" placeholder="Enter your first name">
-        </div>
-        <div class="form-group">
-            <label for="lastName">Last name</label>
-            <input type="text" name="lastName" class="form-control" id="lastName" placeholder="Enter your last name">
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email-address">
-        </div>
-        <div class="form-group">
-            <label for="message">Message</label>
-            <textarea class="form-control" name="message" id="message" rows="10" placeholder="Write your message here"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="file">Add file</label>
-            <input type="file" class="form-control" id="file"/>
-        </div>
-        <button type="submit" class="btn btn-success">Submit</button>
-    </form>
 </div>
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <div id="map" style="width: 1140px; height: 400px;margin-left: 87px"></div>
+<script src="google_maps.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMRwsgaucMPwlUIUlED8SNe9VFH6tp5Lo&libraries=places&callback=initAutocomplete"
+        async defer></script>
 </body>
 </html>

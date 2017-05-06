@@ -5,6 +5,7 @@ include 'headandmenu.php'
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="maps.css" rel="stylesheet">
         <?php print_components($components) ?>
     </head>
 <body style="padding: 20px">
@@ -36,7 +37,7 @@ include 'headandmenu.php'
             <?php print_menu($menu) ?>
         </div>
     </div>
-</div>
+</div><br>
 </body>
 </html>
 

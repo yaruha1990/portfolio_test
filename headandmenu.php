@@ -18,6 +18,12 @@ $menu = [
         "style"=>"padding-right: 20px; text-decoration: none",
         "text"=>"Contacts",
         "href"=>"contacts.php"
+    ],
+    "faq" => [
+        "class"=>"glyphicon glyphicon-question-sign",
+        "style"=>"padding-right: 20px; text-decoration: none",
+        "text"=>"FAQ",
+        "href"=>"faq.php"
     ]
 ];
 
