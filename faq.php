@@ -1,5 +1,7 @@
-<?php   include 'headandmenu.php';
-        include 'messages.php'?>
+<?php
+session_start();
+include 'headandmenu.php';
+include 'messages.php'?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +19,12 @@
                                 <form action=\"exit.php\" method=\"get\">
                                 <input type=\"submit\" value=\"Exit\" class=\"btn btn-success\">
                                 </form>";
-        } else{
+        }else if (!empty($_SESSION['login'])){
+            echo "<p>You have entered as ".$_SESSION['login']."</p>"."
+                                <form action=\"exit.php\" method=\"get\">
+                                <input type=\"submit\" value=\"Exit\" class=\"btn btn-success\">
+                                </form>";
+        }else{
             echo "<form action=\"enter.php\" method=\"request\" role=\"form\" class=\"form-inline\">
                 <div class=\"form-group\">
                     <label for=\"login\">Login</label>

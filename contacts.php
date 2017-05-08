@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'headandmenu.php';
 $contacts = [
     "Name" => "Yaruha's company",
@@ -35,7 +36,12 @@ function print_contacts($contacts){
                                 <form action=\"exit.php\" method=\"get\">
                                 <input type=\"submit\" value=\"Exit\" class=\"btn btn-success\">
                                 </form>";
-        } else{
+        }else if (!empty($_SESSION['login'])){
+            echo "<p>You have entered as ".$_SESSION['login']."</p>"."
+                                <form action=\"exit.php\" method=\"get\">
+                                <input type=\"submit\" value=\"Exit\" class=\"btn btn-success\">
+                                </form>";
+        }else{
             echo "<form action=\"enter.php\" method=\"request\" role=\"form\" class=\"form-inline\">
                 <div class=\"form-group\">
                     <label for=\"login\">Login</label>

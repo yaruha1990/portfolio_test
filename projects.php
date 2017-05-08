@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'headandmenu.php';
 $javaProjects = [
     "Snake" => [
@@ -63,6 +64,11 @@ function print_projects($projects){
                                 <form action=\"exit.php\" method=\"get\">
                                 <input type=\"submit\" value=\"Exit\" class=\"btn btn-success\">
                                 </form>";
+        }else if (!empty($_SESSION['login'])){
+            echo "<p>You have entered as ".$_SESSION['login']."</p>"."
+                                <form action=\"exit.php\" method=\"get\">
+                                <input type=\"submit\" value=\"Exit\" class=\"btn btn-success\">
+                                </form>";
         } else{
             echo "<form action=\"enter.php\" method=\"request\" role=\"form\" class=\"form-inline\">
                 <div class=\"form-group\">
@@ -77,6 +83,8 @@ function print_projects($projects){
                 <a href=\"registration.php\" class=\"btn btn-success\">Registration</a>
             </form>";
         }
+
+
         ?>
     </div>
     <div class="panel-body">

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'headandmenu.php';
 ?>
 
@@ -20,7 +21,12 @@ include 'headandmenu.php';
                                 <form action=\"exit.php\" method=\"get\">
                                 <input type=\"submit\" value=\"Exit\" class=\"btn btn-success\">
                                 </form>";
-                } else{
+                } else if (!empty($_SESSION['login'])){
+                echo "<p>You have entered as ".$_SESSION['login']."</p>"."
+                                <form action=\"exit.php\" method=\"get\">
+                                <input type=\"submit\" value=\"Exit\" class=\"btn btn-success\">
+                                </form>";
+            }else{
                     echo "<form action=\"enter.php\" method=\"request\" role=\"form\" class=\"form-inline\">
                 <div class=\"form-group\">
                     <label for=\"login\">Login</label>
@@ -29,6 +35,8 @@ include 'headandmenu.php';
                 <div class=\"form-group\">
                     <label for=\"password\">Password</label>
                     <input size=\"10\" name=\"pass\" type=\"password\" class=\"form-control\" id=\"password\" placeholder=\"Enter your password\">
+                    <label for='remember'>Remember me</label>
+                <input type='checkbox' name='remember'>
                 </div>
                 <input type=\"submit\" value=\"Entry\" class=\"btn btn-success\"/> /
                 <a href=\"registration.php\" class=\"btn btn-success\">Registration</a>
