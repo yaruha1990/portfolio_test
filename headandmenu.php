@@ -24,7 +24,37 @@ $menu = [
         "style"=>"padding-right: 20px; text-decoration: none",
         "text"=>"FAQ",
         "href"=>"faq.php"
-    ]
+    ],
+];
+
+$toEnterCookies = [
+    "text"=>"You have entered as ",
+    "action"=>"exit.php",
+    "method"=>"get",
+    "type"=>"submit",
+    "value"=>"Exit",
+    "class"=>"btn btn-success"
+];
+$toEnterSession = [
+    "text"=>"You have entered as ",
+    "action"=>"exit.php",
+    "method"=>"get",
+    "type"=>"submit",
+    "value"=>"Exit",
+    "class"=>"btn btn-success"
+];
+
+$notEnteredForm = [
+    "action"=>"enter.php",
+    "method"=>"request",
+    "role"=>"form","class"=>"form-inline",
+    "LoginDivClass"=>"form-group","loginFor"=>"login","loginLabelText"=>"Login",
+    "loginSize"=>"10","loginName"=>"login","loginType"=>"text","loginClass"=>"form-control","loginId"=>"login","loginPlaceholder"=>"login",
+    "passFor"=>"password","passText"=>"Password","passName"=>"pass","passType"=>"password","passId"=>"password","passPlaceholder"=>"password",
+    "remFor"=>"remember","remText"=>"Remember me",
+    "checkType"=>"checkbox","checkName"=>"remember",
+    "submitType"=>"submit","submVal"=>"Entry","submClass"=>"btn btn-success",
+    "ahref"=>"registration.php","aclass"=>"btn btn-success","aText"=>"Registration"
 ];
 
 $components = [
@@ -81,5 +111,26 @@ function print_menu($menu){
         echo "<a class='$value[class]' style='$value[style]' href='$value[href]'> $value[text]</a>";
     }
 }
+
+function toEnterC($toEnterCookies){
+    echo "<p>$toEnterCookies[text] $_COOKIE[login]</p><form action='$toEnterCookies[action]' method='$toEnterCookies[method]'><input type='$toEnterCookies[type]' value='$toEnterCookies[value]' class='$toEnterCookies[class]'></form>";
+}
+
+function toEnterS($toEnterSession){
+    echo "<p>$toEnterSession[text] $_SESSION[login]</p><form action='$toEnterSession[action]' method='$toEnterSession[method]'><input type='$toEnterSession[type]' value='$toEnterSession[value]' class='$toEnterSession[class]'></form>";
+}
+
+function notEntered($notEnteredForm){
+    echo "<form action='$notEnteredForm[action]' method='$notEnteredForm[method]' role='$notEnteredForm[role]' class='$notEnteredForm[class]'>
+            <div class='$notEnteredForm[LoginDivClass]'><label for='$notEnteredForm[loginFor]'>$notEnteredForm[loginLabelText]</label>
+            <input size='$notEnteredForm[loginSize]' name='$notEnteredForm[loginName]' type='$notEnteredForm[loginType]' class='$notEnteredForm[loginClass]' id='$notEnteredForm[loginId]' placeholder=$notEnteredForm[loginPlaceholder]></div>
+            <div class='$notEnteredForm[LoginDivClass]'><label for='$notEnteredForm[passFor]'>$notEnteredForm[passText]</label>
+            <input size='$notEnteredForm[loginSize]' name='$notEnteredForm[passName]' type='$notEnteredForm[passType]' class='$notEnteredForm[loginClass]' id='$notEnteredForm[passId]' placeholder=$notEnteredForm[passPlaceholder]>
+            <label for='$notEnteredForm[remFor]'>$notEnteredForm[remText]</label>
+            <input type='$notEnteredForm[checkType]' name='$notEnteredForm[checkName]'></div>
+            <input type='$notEnteredForm[submitType]' value='$notEnteredForm[submVal]' class='$notEnteredForm[submClass]' /> / 
+            <a href='$notEnteredForm[ahref]' class='$notEnteredForm[aclass]'>$notEnteredForm[aText]</a></form>";
+}
+
 
 ?>

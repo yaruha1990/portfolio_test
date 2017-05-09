@@ -60,31 +60,12 @@ function print_projects($projects){
     <div class="panel-heading" align="right">
         <?php
         if (!empty($_COOKIE['login'])){
-            echo "<p>You have entered as ".$_COOKIE['login']."</p>"."
-                                <form action=\"exit.php\" method=\"get\">
-                                <input type=\"submit\" value=\"Exit\" class=\"btn btn-success\">
-                                </form>";
-        }else if (!empty($_SESSION['login'])){
-            echo "<p>You have entered as ".$_SESSION['login']."</p>"."
-                                <form action=\"exit.php\" method=\"get\">
-                                <input type=\"submit\" value=\"Exit\" class=\"btn btn-success\">
-                                </form>";
+            toEnterC($toEnterCookies);
+        } else if (!empty($_SESSION['login'])){
+            toEnterS($toEnterSession);
         } else{
-            echo "<form action=\"enter.php\" method=\"request\" role=\"form\" class=\"form-inline\">
-                <div class=\"form-group\">
-                    <label for=\"login\">Login</label>
-                    <input size=\"10\" name=\"login\" type=\"text\" class=\"form-control\" id=\"login\" placeholder=\"Enter your login\">
-                </div>
-                <div class=\"form-group\">
-                    <label for=\"password\">Password</label>
-                    <input size=\"10\" name=\"pass\" type=\"password\" class=\"form-control\" id=\"password\" placeholder=\"Enter your password\">
-                </div>
-                <input type=\"submit\" value=\"Entry\" class=\"btn btn-success\"/> /
-                <a href=\"registration.php\" class=\"btn btn-success\">Registration</a>
-            </form>";
+            notEntered($notEnteredForm);
         }
-
-
         ?>
     </div>
     <div class="panel-body">
