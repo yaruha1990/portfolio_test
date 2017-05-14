@@ -30,18 +30,22 @@ include 'messages.php'?>
 
 <div class="container">
     <h3>Contact us or ask your question below</h3>
-    <form name="form" action="check.php" method="request" role="form">
+    <form enctype="multipart/form-data" name="form" action="check.php" method="post" role="form">
         <div class="form-group">
             <label for="firstName">First name</label>
-            <input type="text" name="firstName" class="form-control" id="firstName" placeholder="Enter your first name">
+            <input required type="text" name="firstName" class="form-control" id="firstName" placeholder="Enter your first name">
         </div>
         <div class="form-group">
             <label for="lastName">Last name</label>
-            <input type="text" name="lastName" class="form-control" id="lastName" placeholder="Enter your last name">
+            <input required type="text" name="lastName" class="form-control" id="lastName" placeholder="Enter your last name">
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email-address">
+            <input required type="email" name="email" class="form-control" id="email" placeholder="Enter your email-address">
+        </div>
+        <div class="form-group">
+            <label for="letter">Photo or letter</label>
+            <input type="file" name="letter" class="form-control" id="letter" />
         </div>
         <div class="form-group">
             <label for="message">Message</label>
@@ -57,7 +61,7 @@ include 'messages.php'?>
             krsort($arr); $i = 0;
             foreach ($arr as $key => $value) {
                 if ($i >= 5)break;
-                echo "<div class='panel-body' style='border-top: inherit;border-radius: inherit;margin-top: 20px'><label>" . $key . ', ' . $value['firstName'] . " " . $value['lastName'] . ", " . $value['email'] . "</label><hr>" . $value['message'] . "</div>";
+                echo "<div class='panel-body' style='border-top: inherit;border-radius: inherit;margin-top: 20px'><label>" . $key . ', ' . $value['firstName'] . " " . $value['lastName'] . ", " . $value['email'] . "</label><hr>" . htmlspecialchars($value['message']) . "</div>";
                 $i++;
             }
         }

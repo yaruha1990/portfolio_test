@@ -30,7 +30,7 @@ $menu = [
 $toEnterCookies = [
     "text"=>"You have entered as ",
     "action"=>"exit.php",
-    "method"=>"get",
+    "method"=>"post",
     "type"=>"submit",
     "value"=>"Exit",
     "class"=>"btn btn-success"
@@ -38,7 +38,7 @@ $toEnterCookies = [
 $toEnterSession = [
     "text"=>"You have entered as ",
     "action"=>"exit.php",
-    "method"=>"get",
+    "method"=>"post",
     "type"=>"submit",
     "value"=>"Exit",
     "class"=>"btn btn-success"
@@ -46,7 +46,7 @@ $toEnterSession = [
 
 $notEnteredForm = [
     "action"=>"enter.php",
-    "method"=>"request",
+    "method"=>"post",
     "role"=>"form","class"=>"form-inline",
     "LoginDivClass"=>"form-group","loginFor"=>"login","loginLabelText"=>"Login",
     "loginSize"=>"10","loginName"=>"login","loginType"=>"text","loginClass"=>"form-control","loginId"=>"login","loginPlaceholder"=>"login",
