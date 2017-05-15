@@ -11,16 +11,14 @@ if ($_FILES['letter']['name']==null && $_FILES['letter']['type']==null && $_POST
     echo "Thank you for your request!"."<br><br>"."It will be processed soon.";
     header("Refresh: 3; url = faq.php");
 } else{
-    $file = fopen("messages.php","a+t");
-    ob_start();
-    var_export($_POST);
-    $out = ob_get_contents();
-    ob_end_clean();
-    fwrite($file,'$arr['."'".date("Y.m.d H:i:s",time()+60*60)."'".']='.$out.";\n");
-    fclose($file);
+    $today = date("Y-m-d H:i:s",time()+60*60);
+    $dbh = new PDO('mysql:host=localhost; dbname=mybase', 'root', '');
+    $sth = $dbh->query("insert into `message` (`firstName`, `lastName`,`email`,`message`,`date`)
+VALUES ('$_POST[firstName]','$_POST[lastName]','$_POST[email]','$_POST[message]','$today')");
+
     move_uploaded_file($_FILES['letter']['tmp_name'],'uploads/'.$_POST['firstName'].' '.$_POST['lastName'].'('.$_POST['email'].')');
     echo "Thank you for your request!"."<br><br>"."It will be processed soon.";
-    header("Refresh: 3; url = faq.php");
+    header("Refresh: 2; url = faq.php");
 }
 
 

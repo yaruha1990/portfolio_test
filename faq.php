@@ -1,7 +1,6 @@
 <?php
 session_start();
-include 'headandmenu.php';
-include 'messages.php'?>
+include 'headandmenu.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,11 +56,15 @@ include 'messages.php'?>
     <article class="panel panel-default">
         <h3 style="padding-left: 13px">List of your frequently asked questions</h3>
         <?php
-        if (isset($arr)) {
-            krsort($arr); $i = 0;
-            foreach ($arr as $key => $value) {
+        $dbh = new PDO('mysql:host=localhost; dbname=mybase', 'root', '');
+        $sth = $dbh->query("select * from `message`");
+        $message = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+        if (isset($message)) {
+            krsort($message); $i = 0;
+            foreach ($message as $key => $value) {
                 if ($i >= 5)break;
-                echo "<div class='panel-body' style='border-top: inherit;border-radius: inherit;margin-top: 20px'><label>" . $key . ', ' . $value['firstName'] . " " . $value['lastName'] . ", " . $value['email'] . "</label><hr>" . htmlspecialchars($value['message']) . "</div>";
+                echo "<div class='panel-body' style='border-top: inherit;border-radius: inherit;margin-top: 20px'><label>" . $value['date'] . ', ' . $value['firstName'] . " " . $value['lastName'] . ", " . $value['email'] . "</label><hr>" . htmlspecialchars($value['message']) . "</div>";
                 $i++;
             }
         }
