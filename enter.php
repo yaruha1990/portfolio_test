@@ -1,0 +1,39 @@
+<?php
+session_start();
+    $dbh = new PDO('mysql:host=localhost; dbname=mybase', 'root', '');
+    $sth = $dbh->query("select * from `user`");
+    $user = $sth->fetchAll(PDO::FETCH_ASSOC);
+    $login = $_POST['login'];
+    $pass = md5($_POST['pass']);
+    $checkbox = null;
+    if (!empty($_POST['remember'])){
+        $checkbox = $_POST['remember'];
+    }
+    if (empty($login) || empty($pass)){
+        exit("Invalid data<br><input type='button' value='Back' onclick='history.back()'>");
+    }
+    $count = 0;
+
+    foreach ($user as $key => $value){
+        if ($value['login'] != $login){
+            exit("Such login is not registered yet!<br><input type='button' value='Back' onclick='history.back()'>");
+        }
+        if ($login == $value['login'] && md5($pass) == md5($value['password']) && $checkbox == 'on'){
+            setcookie("login",$login, time()+3600);
+            setcookie("pass",md5($pass),time()+3600);
+            echo "Hello, $login";
+            $count++;
+            header("refresh:2;url=index.php");
+        } if ($login == $value['login'] && md5($pass) == md5($value['password']) && $checkbox == null){
+            $_SESSION['login'] = $login;
+            $_SESSION['pass'] = md5($pass);
+            echo "Hello, $login";
+            $count++;
+            header("refresh:2;url=index.php");
+        }
+    }
+    if ($count==0){
+        exit("Invalid login or password!<br><input type='button' value='Back' onclick='history.back()'>");
+    }
+    $count=0;
+
