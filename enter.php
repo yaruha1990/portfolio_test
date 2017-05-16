@@ -13,25 +13,28 @@ session_start();
         exit("Invalid data<br><input type='button' value='Back' onclick='history.back()'>");
     }
     $count = 0;
+    $num = 0;
 
-    foreach ($user as $key => $value){
-        if ($value['login'] != $login){
-            exit("Such login is not registered yet!<br><input type='button' value='Back' onclick='history.back()'>");
+    foreach ($user as $key => $value) {
+        if ($login == $value['login']){
+            $num++;
         }
-        if ($login == $value['login'] && md5($pass) == md5($value['password']) && $checkbox == 'on'){
-            setcookie("login",$login, time()+3600);
-            setcookie("pass",md5($pass),time()+3600);
+        if ($login == $value['login'] && $pass == $value['password'] && $checkbox == 'on') {
+            setcookie("login", $login, time() + 3600);
+            setcookie("pass", $pass, time() + 3600);
             echo "Hello, $login";
             $count++;
             header("refresh:2;url=index.php");
-        } if ($login == $value['login'] && md5($pass) == md5($value['password']) && $checkbox == null){
+        }
+        if ($login == $value['login'] && $pass == $value['password'] && $checkbox == null) {
             $_SESSION['login'] = $login;
-            $_SESSION['pass'] = md5($pass);
+            $_SESSION['pass'] = $pass;
             echo "Hello, $login";
             $count++;
             header("refresh:2;url=index.php");
         }
     }
+    if ($num == 0) exit("Such login is not registered yet!<br><input type='button' value='Back' onclick='history.back()'>");
     if ($count==0){
         exit("Invalid login or password!<br><input type='button' value='Back' onclick='history.back()'>");
     }
